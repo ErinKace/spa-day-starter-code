@@ -24,3 +24,21 @@ table {
             padding: 10px;
             text-align: center;
 }
+
+.nail-polish {
+display:inline-block;
+width: 100px;
+height: 100px;
+}
+
+#pink {
+background-color:#F15BB5;
+}
+
+#blue {
+background-color:#00BBF9;
+}
+
+#purple {
+background-color:#9B5DE5;
+}
