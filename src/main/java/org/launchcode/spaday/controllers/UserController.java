@@ -21,10 +21,16 @@ public class UserController {
     }
     @PostMapping("/add")
     public String processAddUserForm(Model model, @ModelAttribute User user, String verify) {
+        model.addAttribute("username",user.getUsername());
+        model.addAttribute("email", user.getEmail());
         // add form submission handling code here
         if (verify.equals(user.getPassword())) {
+
             return "redirect:";
+        } else {
+            String error = "Passwords do not match";
+            model.addAttribute("error", error);
+            return "user/add";
         }
-        return "user/add";
     }
 }
