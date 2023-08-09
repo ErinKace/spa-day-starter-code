@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("user")
 public class UserController {
@@ -16,11 +18,12 @@ public class UserController {
         return "user/index";
     }
     @GetMapping("add")
-    public String displayAddUserForm() {
+    public String displayAddUserForm(Model model) {
+        model.addAttribute(new User());
         return "user/add";
     }
     @PostMapping("/add")
-    public String processAddUserForm(Model model, @ModelAttribute User user, String verify) {
+    public String processAddUserForm(Model model, @ModelAttribute @Valid User user, String verify) {
         model.addAttribute("username",user.getUsername());
         model.addAttribute("email", user.getEmail());
         // add form submission handling code here
