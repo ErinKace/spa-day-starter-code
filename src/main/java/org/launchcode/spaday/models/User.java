@@ -9,10 +9,12 @@ public class User {
     private String username;
     @Email(message="Must be a valid email.")
     private String email;
-    @Min(value=6, message="Must be at least 6 characters.")
+    @Size(min=6, message="Must be at least 6 characters.")
     @NotBlank(message="Password is required.")
     @NotNull
     private String password;
+    @NotNull(message="Passwords do not match.")
+    private String verifyPassword;
 
     public User() {
 
@@ -47,5 +49,20 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+        this.checkPassword();
+    }
+
+    public String getVerifyPassword() {
+        return verifyPassword;
+    }
+
+    public void setVerifyPassword(String verifyPassword) {
+        this.verifyPassword = verifyPassword;
+        this.checkPassword();
+    }
+    private void checkPassword() {
+        if (password == null || verifyPassword == null || !password.equals(verifyPassword)) {
+            verifyPassword = null;
+        }
     }
 }
